@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_14_214632) do
+ActiveRecord::Schema.define(version: 2018_07_18_161201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,24 +58,39 @@ ActiveRecord::Schema.define(version: 2018_07_14_214632) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "number", null: false
+    t.integer "cvv", null: false
+    t.string "exp_month", null: false
+    t.string "exp_year", null: false
+    t.string "card_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.decimal "price", precision: 12, scale: 2, null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.decimal "total_prise", precision: 12, scale: 2, null: false
+    t.string "state", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ratings", force: :cascade do |t|
     t.text "review"
-    t.integer "rating_number"
+    t.integer "number"
     t.bigint "book_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_ratings_on_book_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
