@@ -13,7 +13,7 @@ gem 'puma', '~> 3.11'
 gem 'bootstrap-sass'
 gem 'haml'
 gem 'haml-rails'
-# Use SCSS for stylesheets
+# Use SCSS for stylesheet
 gem 'sass-rails', '>= 3.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
