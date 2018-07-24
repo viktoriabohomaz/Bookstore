@@ -13,6 +13,9 @@ gem 'puma', '~> 3.11'
 gem 'bootstrap-sass'
 gem 'haml'
 gem 'haml-rails'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 3.2'
 # Use Uglifier as compressor for JavaScript assets

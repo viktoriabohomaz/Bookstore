@@ -30,7 +30,9 @@
               %li
                 %a.collapse-link{href: "#"} Web design
           %li
-            %a{href: "#"} My account
+            %a{href: "=new_user_registration"} Log in
+          %li
+            %a{href: "=new_user_session"} Sign in
       .hidden-xs
         %ul.nav.navbar-nav
           %li
@@ -46,6 +48,8 @@
                 %a{href: "#"} Web design
               %li.divider{role: "separator"}
               %li
-                %a{href: "#"} Log out
-          %li
-            %a{href: "#"} My account
+                %a{href: "#{destroy_user_session_path}"} Log out
+            %li
+              %a{href: "#{new_user_registration_path}"} Sign up
+            %li
+              %a{href: "#{new_user_session_path}"} Log in
