@@ -1,0 +1,12 @@
+%main.container.general-main-wrap
+  .text-center
+    %h2.general-login-title Forgot your password?
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+      = devise_error_messages!
+  %form.general-form
+    .form-group.mb-30
+      %label.control-label.input-label{for: "email"} Enter Email
+      %input#email_field.form-control{name:"email", type: "email", placeholder: "Enter Email", autofocus: true}
+    .text-center
+      %button.btn.btn-default.mb-20 Send me reset password instructions
+    = render :partial => "devise/shared/links"

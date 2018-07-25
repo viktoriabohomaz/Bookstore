@@ -18,6 +18,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 3.2'
+
+gem 'jquery-rails', '~> 4.3.0'
+
+gem 'font-awesome-rails', '~> 4.7.0.0'
+gem 'jquery-ui-rails', '~> 6.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
