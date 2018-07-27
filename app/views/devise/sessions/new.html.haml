@@ -1,25 +1,28 @@
 %main.container.general-main-wrap
   .text-center
-    %h3.general-login-title Log In
-    %a.general-login-icon{href: "#"}
+    %h3.general-login-title Log in
+    %a.general-login-icon{ href: user_facebook_omniauth_callback_path }
       %i.fa.fa-facebook-official
     %p.general-login-text or
-  %form.general-form
+  = form_for(resource, as: resource_name,
+    url: session_path(resource_name),
+    html: {class: "general-form"}) do |f|
     .form-group.mb-30
-      %label.control-label.input-label{for: "email"} Enter Email
-      %input#email.form-control{name:"email", type: "email", placeholder: "Enter Email"}
+      = f.label :email, class: "control-label font-weight-light"
+      = f.email_field :email, class: "form-control", id: "email"
     .form-group.mb-30
-      %label.control-label.input-label{for: "password"} Password
-      %input#password.form-control{name:"password", type: "password", placeholder: "Password"}
-      %a.help-block.in-gold-500{href: "#{new_user_password_path}"} Forgot password?
+      = f.label :password, class: "control-label font-weight-light"
+      = f.password_field :password, class: "form-control", id: "password"
+      %a.help-block.in-gold-500{ href: new_password_path(resource_name) }
+        Forgot password?
     .form-group.checkbox.text-center.mb-30
-      %label.checkbox-label
-        %input.checkbox-input{type: "checkbox", hidden: "true"}
+      %label.font-weight-light.pl-0
+        = f.check_box :remember_me, class: "checkbox-input", hidden: "true"
         %span.checkbox-icon
           %i.fa.fa-check
-        %span.checkbox-text Remember me
+        = f.label :remember_me, class: "font-weight-light pl-0"
     .text-center
-      %button.btn.btn-default.mb-20 Log in
+      = f.submit 'Log in', class: "btn btn-default mb-20"
   %p.general-sign-text.text-center
-    Don’t have an Account?
-    %a.in-gold-500{href: "#{new_user_registration_path}"} Sign Up
+    Don`t have account?
+    %a.in-gold-500{ href: new_user_registration_path } Sing up
