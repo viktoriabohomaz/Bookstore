@@ -9,8 +9,20 @@ gem 'rails', '~> 5.2.0'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+# Use haml for the views
+gem 'bootstrap-sass'
+gem 'haml'
+gem 'haml-rails'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 3.2'
+
+gem 'jquery-rails', '~> 4.3.0'
+
+gem 'font-awesome-rails', '~> 4.7.0.0'
+gem 'jquery-ui-rails', '~> 6.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -57,6 +69,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
