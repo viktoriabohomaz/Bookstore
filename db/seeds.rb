@@ -22,7 +22,7 @@ end
 
 25.times do |_book|
   Book.create!(title: Faker::Book.title, description: Faker::Lorem.sentence(100, false, 0).chop,
-                          price: Faker::Number.decimal(4, 2),
-                          count_in_stock: Faker::Number.between(1, 200), author: Author.last, categories: Category.last(rand(1..5)))
+               price: Faker::Number.decimal(4, 2),
+               count_in_stock: Faker::Number.between(1, 200), author: Author.last, categories: Category.last(rand(1..5)))
 end
 

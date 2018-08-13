@@ -24,17 +24,20 @@ gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
 
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'carrierwave' , ' ~> 1.0'
+gem 'mini_magick'
+gem 'rails_admin', '~> 1.3'
+gem 'cancancan', '~> 2.0'
 
 group :development, :test do
 
   gem 'rspec-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker'
+  gem 'letter_opener'
 end
 
 group :development do
-  gem 'letter_opener'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
