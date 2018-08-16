@@ -46,10 +46,11 @@
                 %a{href: "#"} Photo
               %li
                 %a{href: "#"} Web design
-              %li.divider{role: "separator"}
-              %li
-                %a{href: "#{destroy_user_session_path}"} Log out
+          - if user_signed_in?
             %li
-              %a{href: "#{new_user_registration_path}"} Sign up
+              = link_to ' Log out', destroy_user_session_path, method: :delete
+          - else
             %li
-              %a{href: "#{new_user_session_path}"} Log in
+              = link_to 'Sign up', new_user_registration_path
+            %li
+              = link_to 'Log in', new_user_session_path
