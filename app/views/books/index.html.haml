@@ -41,7 +41,7 @@
         Books order
         %i.fa.fa-angle-down.dropdown-icon
   .mb-120
-    - Book.all.each_slice(4) do |four_books|
+    - @books.each_slice(4) do |four_books|
       .row
         - four_books.each do |book|
           .col-xs-6.col-sm-3
@@ -57,7 +57,7 @@
                       %i.fa.fa-shopping-cart.thumb-icon
             .general-thumb-info
               %p.general-title= book.title
-              %p.font-16.in-gold-500= book.price
+              %p.font-16.in-gold-500= book.price_to_euro
               %span.divider-sm
               %p.in-grey-600.small= book.author
     .text-center
