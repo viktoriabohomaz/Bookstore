@@ -12,10 +12,11 @@ class BookDecorator < Draper::Decorator
   #     end
   #   end
   def author_full_name
-    "#{author.first_name} #{author.last_name}" unless author.nil?
+    return if author.nil?
+    "#{author.first_name} #{author.last_name}"
   end
 
-  def price_to_euro
+  def price_in_euro
     number_to_currency(price,:unit=>'€')
   end
 
