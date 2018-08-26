@@ -11,7 +11,7 @@ class Book < ApplicationRecord
 
   mount_uploader :cover, CoverUploader
 
-  #scope :books_by_category,->(category_title) { where categories: category_title }
+  AVAILABLE_FILTERS = %w[newest_book asc_title desc_title asc_price desc_price]
   scope :newest_book, -> { order(created_at: :asc) }
   scope :asc_title, -> { order(title: :asc) }
   scope :desc_title, -> { order(title: :desc) }

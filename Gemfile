@@ -32,7 +32,7 @@ gem 'draper'
 
 
 group :development, :test do
-
+  gem 'pry'
   gem 'rspec-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'
