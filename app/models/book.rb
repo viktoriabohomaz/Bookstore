@@ -11,10 +11,10 @@ class Book < ApplicationRecord
 
   mount_uploader :cover, CoverUploader
 
+  #scope :books_by_category,->(category_title) { where categories: category_title }
   scope :newest_book, -> { order(created_at: :asc) }
-  scope :latest_book, -> { order(created_at: :desc) }
   scope :asc_title, -> { order(title: :asc) }
   scope :desc_title, -> { order(title: :desc) }
-  scope :lowest_price, -> { order(price: :asc) }
-  scope :highest_price, -> { order(price: :desc) }
+  scope :asc_price, -> { order(price: :asc) }
+  scope :desc_price, -> { order(price: :desc) }
 end
