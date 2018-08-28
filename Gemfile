@@ -33,9 +33,9 @@ gem 'aasm'
 
 group :development, :test do
   gem 'pry'
-  gem 'rspec-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'
+  gem 'factory_girl_rails', '~> 4.5.0'
   gem 'letter_opener'
 end
 
@@ -50,6 +50,9 @@ group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner', '~> 1.5'
 end
 
 group :production do

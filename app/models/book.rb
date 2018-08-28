@@ -1,8 +1,8 @@
 class Book < ApplicationRecord
-  validates :title, :price, :count_in_stock, presence: true
-  validates :title, length: { minimum: 5, maximum: 100 }
-  validates :description, length: { minimum: 100, maximum: 1000, allow_blank: true }
-  validates :count_in_stock, numericality: { only_integer: true, greater_than_or_equal_to: 0}
+  validates_presence_of :title, :price, :count_in_stock
+  validates_length_of  :title,  minimum: 5, maximum: 100
+  validates_length_of :description, minimum: 100, maximum: 1000, allow_blank: true
+  validates_numericality_of  :count_in_stock, only_integer: true, greater_than_or_equal_to: 0
 
   belongs_to :author
   has_many :book_categories
