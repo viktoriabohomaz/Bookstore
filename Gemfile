@@ -29,7 +29,7 @@ gem 'mini_magick'
 gem 'rails_admin', '~> 1.3'
 gem 'cancancan', '~> 2.0'
 gem 'draper'
-
+gem 'aasm'
 
 group :development, :test do
   gem 'pry'

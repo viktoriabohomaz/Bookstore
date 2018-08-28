@@ -3,6 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
+  has_many :orders
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -22,4 +24,7 @@ class User < ApplicationRecord
     end
   end
 
+  def current_order
+     orders.find_or_create_by(state: 'cart')
+  end
   end

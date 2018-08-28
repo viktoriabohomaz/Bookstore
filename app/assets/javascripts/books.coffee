@@ -5,8 +5,11 @@ $ ->
     $(@).hide()
 
   $('#add-to-cart').on 'click', ->
-    $.post '/orders/create', { book_id: 1, count: $('.quantity-input').val() }, (data) ->
-
+    $.post '/order_items',
+      order_item:
+        book_id: $('#book-id').val()
+        quantity: $('.quantity-input').val()
+    , (data) ->
       $('.result').html data
 
   $('#plus').on 'click', ->
