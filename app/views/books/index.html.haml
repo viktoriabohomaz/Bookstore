@@ -34,7 +34,7 @@
         %i.fa.fa-angle-down.dropdown-icon
       %ul.dropdown-menu
         %li
-          = link_to 'all', books_path, class: "filter-link"
+          = link_to 'All', books_path, class: "filter-link"
         - Category.all.each do |_category|
           %li
     %p.in-grey-600.small.mb-10 Sort by
@@ -51,14 +51,16 @@
           .col-xs-6.col-sm-3
             .general-thumb-wrap
               .thumbnail.general-thumbnail
-                - if book.cover.nil?
-                  %i.fa.fa-book.fa-4x{ "aria-hidden": true }
+                - if book.cover.file.nil?
+                  %img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
                 - else
+                  = image_tag book.cover_url(:thumb), class: 'img img-shadow general-thumbnail-img'
                 .thumb-hover
                   .general-thumb-link-wrap
                     = link_to book_path(book), class: "thumb-hover-link" do
                       %i.fa.fa-eye.thumb-icon{ 'aria-hidden': "true" }
-                      %i.fa.fa-shopping-cart.thumb-icon
+                    = link_to order_path(book), class: "thumb-hover-link" do
+                      %i.fa.fa-shopping-cart.thumb-icon{ 'aria-hidden': "true" }
             .general-thumb-info
               %p.general-title= book.title
               %p.font-16.in-gold-500= book.price_in_euro

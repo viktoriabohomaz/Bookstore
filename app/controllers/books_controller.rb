@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :cover, :categories, :price)
+    params.require(:book).permit(:title, :author, :cover, :categories, :price, :quantity)
   end
 
   def set_collection

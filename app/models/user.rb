@@ -4,6 +4,9 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
   has_many :orders
+  has_many :credit_cards
+  has_many :addresses
+  has_many :ratings
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

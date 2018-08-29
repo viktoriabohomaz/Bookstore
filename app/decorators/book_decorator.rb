@@ -17,7 +17,7 @@ class BookDecorator < Draper::Decorator
   end
 
   def price_in_euro
-    number_to_currency(price,:unit=>'€')
+    number_to_currency(price, unit:'€')
   end
 
   def short_description

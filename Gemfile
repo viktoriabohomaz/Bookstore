@@ -30,12 +30,13 @@ gem 'rails_admin', '~> 1.3'
 gem 'cancancan', '~> 2.0'
 gem 'draper'
 gem 'aasm'
+gem 'rails_admin_aasm'
 
 group :development, :test do
   gem 'pry'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'
-  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'factory_bot'
   gem 'letter_opener'
 end
 
@@ -53,6 +54,7 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'database_cleaner', '~> 1.5'
+  gem 'simplecov', require: false
 end
 
 group :production do

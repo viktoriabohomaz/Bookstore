@@ -20,4 +20,5 @@ RSpec.describe Book, type: :model do
     it { should have_many(:categories).through(:book_categories)}
     it { should belong_to(:author) }
   end
+
 end

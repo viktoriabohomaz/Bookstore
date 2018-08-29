@@ -1,5 +1,7 @@
 RailsAdmin.config do |config|
 
+  config.authorize_with :cancancan
+
   ### Popular gems integration
 
   ## == Devise ==

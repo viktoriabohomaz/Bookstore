@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   root "home_pages#index"
 
   resources :books, only: [:index, :show]
-  resources :order_items, only: [:index, :create, :update, :destroy]
-  resources :orders, only: [:index, :create, :destroy]
+  resources :order_items, only: [:create, :update, :destroy]
+  resources :orders, only: [:show, :create, :destroy]
 end

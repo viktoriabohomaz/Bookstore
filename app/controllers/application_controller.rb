@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   # called (once) when the user logs in, insert any code your application needs
   # to hand off from guest_user to current_user.
   def logging_in
-    binding.pry
+
     guest_user.current_order.update(user_id: current_user.id)
     guest_user.destroy
   end
