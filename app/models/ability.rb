@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     can :read, :all
+    can :manage, :all
 =begin
     user ||= User.new
     if user.admin?

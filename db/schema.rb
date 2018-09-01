@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_29_181315) do
+ActiveRecord::Schema.define(version: 2018_08_29_230525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2018_08_29_181315) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "books_count", default: 0
   end
 
   create_table "countries", force: :cascade do |t|
@@ -81,16 +82,18 @@ ActiveRecord::Schema.define(version: 2018_08_29_181315) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.decimal "price", default: "0.0", null: false
+    t.decimal "price", precision: 12, scale: 2, default: "0.0", null: false
     t.integer "quantity", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "order_id"
+    t.bigint "book_id"
+    t.index ["book_id"], name: "index_order_items_on_book_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal "total_prise", default: "0.0", null: false
+    t.decimal "total_prise", precision: 12, scale: 2, default: "0.0", null: false
     t.string "state", default: "in_progress", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,6 +1,8 @@
 RailsAdmin.config do |config|
 
+=begin
   config.authorize_with :cancancan
+=end
 
   ### Popular gems integration
 

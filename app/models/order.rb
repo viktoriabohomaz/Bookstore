@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   include AASM
-  has_many :order_items
+  has_many :order_items, dependent: :destroy
   belongs_to :user, optional: true
   belongs_to :credit_card, optional: true
 

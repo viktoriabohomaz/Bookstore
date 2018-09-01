@@ -8,13 +8,15 @@ class Book < ApplicationRecord
   has_many :book_categories
   has_many :categories, through: :book_categories
   has_many :ratings
+  has_many :order_items
 
   mount_uploader :cover, CoverUploader
 
-  AVAILABLE_FILTERS = %w[newest_book asc_title desc_title asc_price desc_price]
+  AVAILABLE_FILTERS = %w[newest_book asc_title desc_title asc_price desc_price, best_sellers]
   scope :newest_book, -> { order(created_at: :asc) }
   scope :asc_title, -> { order(title: :asc) }
   scope :desc_title, -> { order(title: :desc) }
   scope :asc_price, -> { order(price: :asc) }
   scope :desc_price, -> { order(price: :desc) }
+  scope :best_sellers, -> { order('COUNT(order_items.id) DESC').limit(4) }
 end

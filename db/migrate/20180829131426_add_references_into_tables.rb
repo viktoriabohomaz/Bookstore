@@ -5,5 +5,6 @@ class AddReferencesIntoTables < ActiveRecord::Migration[5.2]
     add_reference :credit_cards, :user
     add_reference :addresses, :user
     add_reference :order_items, :order
+    add_reference :order_items, :book
   end
 end
