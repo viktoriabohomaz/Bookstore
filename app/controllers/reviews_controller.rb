@@ -1,13 +1,6 @@
 class ReviewsController < ApplicationController
+  decorates_assigned :review
   def create
   end
 
-  def destroy
-  end
-
-  def index
-  end
-
-  def update
-  end
 end

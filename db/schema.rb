@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_27_151346) do
+ActiveRecord::Schema.define(version: 2018_08_29_230525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2018_07_27_151346) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -33,23 +35,32 @@ ActiveRecord::Schema.define(version: 2018_07_27_151346) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "book_categories", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_book_categories_on_book_id"
+    t.index ["category_id"], name: "index_book_categories_on_category_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
     t.decimal "price", precision: 6, scale: 2, null: false
     t.integer "count_in_stock", null: false
     t.bigint "author_id"
-    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cover"
     t.index ["author_id"], name: "index_books_on_author_id"
-    t.index ["category_id"], name: "index_books_on_category_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "books_count", default: 0
   end
 
   create_table "countries", force: :cascade do |t|
@@ -66,20 +77,30 @@ ActiveRecord::Schema.define(version: 2018_07_27_151346) do
     t.string "card_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.decimal "price", precision: 12, scale: 2, null: false
-    t.integer "quantity", null: false
+    t.decimal "price", precision: 12, scale: 2, default: "0.0", null: false
+    t.integer "quantity", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.bigint "book_id"
+    t.index ["book_id"], name: "index_order_items_on_book_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal "total_prise", precision: 12, scale: 2, null: false
-    t.string "state", null: false
+    t.decimal "total_prise", precision: 12, scale: 2, default: "0.0", null: false
+    t.string "state", default: "in_progress", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "credit_card_id"
+    t.bigint "user_id"
+    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -107,9 +128,12 @@ ActiveRecord::Schema.define(version: 2018_07_27_151346) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+    t.boolean "admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "book_categories", "books"
+  add_foreign_key "book_categories", "categories"
 end

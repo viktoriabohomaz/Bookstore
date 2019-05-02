@@ -4,15 +4,15 @@
     %a.general-login-icon{ href: user_facebook_omniauth_callback_path }
       %i.fa.fa-facebook-official
     %p.general-login-text or
-  = form_for(resource, as: resource_name,
+  = simple_form_for(resource, as: resource_name,
     url: session_path(resource_name),
     html: {class: "general-form"}) do |f|
     .form-group.mb-30
       = f.label :email, class: "control-label font-weight-light"
-      = f.email_field :email, class: "form-control", id: "email"
+      = f.input_field :email, class: "form-control", id: "email"
     .form-group.mb-30
       = f.label :password, class: "control-label font-weight-light"
-      = f.password_field :password, class: "form-control", id: "password"
+      = f.input_field :password, class: "form-control", id: "password"
       %a.help-block.in-gold-500{ href: new_password_path(resource_name) }
         Forgot password?
     .form-group.checkbox.text-center.mb-30

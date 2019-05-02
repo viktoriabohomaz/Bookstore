@@ -1,0 +1,49 @@
+%main.container
+  %h1.general-title-margin Catalog
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      .dropdown.width-240
+        %p.dropdown-toggle.lead.small{'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+          Filters
+          %i.fa.fa-angle-down.dropdown-icon.pull-right
+        %ul.dropdown-menu
+          %li= link_to "Newest first", books_path(filter: :newest_book, category_id: params[:category_id])
+          %li= link_to "A - Z", books_path(filter: :asc_title, category_id: params[:category_id] )
+          %li= link_to "Z - A", books_path(filter: :desc_title, category_id: params[:category_id] )
+          %li= link_to "Price: Low to hight", books_path(filter: :asc_price, category_id: params[:category_id] )
+          %li= link_to "Price: Hight to low",books_path(filter: :desc_price, category_id: params[:category_id] )
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        = link_to books_path, class: "filter-link" do
+          All
+          %span.badge.general-badge= Book.count
+      - Category.all.each do |category|
+        %li.mr-35
+          = link_to books_path(category_id: category.id),
+            class: "filter-link" do
+            = "#{category.title}"
+            %span.badge.general-badge= category.books_count
+  .mb-120
+    - books.each_slice(4) do |four_books|
+      .row
+        - four_books.each do |book|
+          .col-xs-6.col-sm-3
+            .general-thumb-wrap
+              .thumbnail.general-thumbnail
+                - if book.cover.file.nil?
+                  = image_tag "1.jpg", class: 'img img-shadow general-thumbnail-img', alt: "design-book"
+                - else
+                  = image_tag book.cover_url(:thumb), class: 'img img-shadow general-thumbnail-img'
+                .thumb-hover
+                  .general-thumb-link-wrap
+                    = link_to book_path(book), class: "thumb-hover-link" do
+                      %i.fa.fa-eye.thumb-icon{ 'aria-hidden': "true" }
+                    = link_to order_path(book), class: "thumb-hover-link" do
+                      %i.fa.fa-shopping-cart.thumb-icon{ 'aria-hidden': "true" }
+              .general-thumb-info
+                %p.general-title= book.title
+                %p.font-16.in-gold-500= book.price_in_euro
+                %span.divider-sm
+                %p.in-grey-600.small= book.author_full_name
+    .text-center
+      %button.btn.btn-disabled{ 'disabled': true } View more
